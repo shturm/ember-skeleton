@@ -1,4 +1,5 @@
 node_modules/*
 app/templates.js
 vendor/*
+dist/
 *.sublime-*
