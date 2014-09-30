@@ -1,5 +1,5 @@
 node_modules/*
 app/templates.js
-vendor/*
-dist/
+bower_components/
+dist/*
 *.sublime-*

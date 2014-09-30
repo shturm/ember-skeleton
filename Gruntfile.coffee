@@ -6,6 +6,7 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks "grunt-contrib-watch"
 	grunt.loadNpmTasks "grunt-contrib-clean"
 	grunt.loadNpmTasks "grunt-contrib-copy"
+	grunt.loadNpmTasks "grunt-contrib-rename"
 	grunt.loadNpmTasks "grunt-contrib-less"
 	grunt.loadNpmTasks "grunt-ember-templates"
 	grunt.loadNpmTasks "grunt-script-include"
@@ -86,8 +87,16 @@ module.exports = (grunt) ->
 		copy:
 			main:
 				expand: true
-				src: 'vendor/**/*'
+				src: 'bower_components/**/*'
 				dest:'dist/'
+		rename:
+			main:
+				files: [
+					{
+						src: ['dist/bower_components']
+						dest: 'dist/vendor'
+					}
+				]
 
 		watch:
 			gruntfile:
@@ -103,4 +112,4 @@ module.exports = (grunt) ->
 				files: ['less/**/*.less']
 				tasks: ['less']
 
-	grunt.registerTask 'default', ['clean','coffee','less','emberTemplates','include','import', 'copy','clean:buggyInclude','watch']
+	grunt.registerTask 'default', ['clean','coffee','less','emberTemplates','include','import', 'copy','rename','clean:buggyInclude']
